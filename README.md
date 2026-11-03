@@ -42,6 +42,12 @@ Important behavior and configuration decisions:
 
 ## Install and test
 
+The optional `weasel.custom.yaml` and `squirrel.custom.yaml` files provide
+client-specific overrides for Weasel (Windows) and Squirrel (macOS). Install
+the applicable file alongside the shared Rime configuration before deploying;
+these settings do not replace `default.custom.yaml`. They configure client
+notifications, application-specific behavior, and candidate presentation.
+
 Install the repository's schema, dictionary, Lua, and OpenCC files into the
 shared Rime data directory, then deploy Rime. The Lua features require the
 `librime-lua` plugin.

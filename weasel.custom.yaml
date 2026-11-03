@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Weasel client-specific overrides; see README.md for installation notes.
+# Reference: https://github.com/rime/weasel/wiki
+patch:
+  show_notifications:
+    - ascii_mode
+    - schema
+  show_notifications_time: 500
+  global_ascii: true
+
+  app_options:
+    cmd.exe:
+      ascii_mode: true
+      inline_preedit: false
+      vim_mode: false
+    firefox.exe:
+      inline_preedit: true  # see weasel issue #496
+
+  "style/color_scheme": lost_temple
+  "style/inline_preedit": false
+  "style/preedit_type": composition

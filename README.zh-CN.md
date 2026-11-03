@@ -25,6 +25,10 @@
 
 ## 安装与测试
 
+可选的 `weasel.custom.yaml` 和 `squirrel.custom.yaml` 分别提供 Weasel
+（Windows）和 Squirrel（macOS）的客户端专属覆盖配置。将对应文件与 Rime
+共享配置放在一起后再部署；这些配置不会替代 `default.custom.yaml`。它们设置客户端通知、特定应用行为及候选显示方式。
+
 将项目中的 schema、词典、Lua 和 OpenCC 文件放入 Rime shared data 目录，然后部署 Rime。Lua 功能需要安装 `librime-lua` 插件。
 
 配置结构检查：
