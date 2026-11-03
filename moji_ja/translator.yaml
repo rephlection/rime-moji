@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi.schema.yaml.
+# Modifications: limits settings to the dictionary/userdb options read by the local Lua Memory.
+# Rime `translator` namespace settings used by Memory(engine, Schema('moji_ja'))
+# in lua/moji_ja/translator.lua. The engine registers a Lua translator, not a
+# script_translator for this dictionary.
+translator:
+  dictionary: moji_ja # dictionary opened by the Lua Memory object
+  user_dict: moji_ja # user dictionary used for Japanese learning
+  enable_user_dict: true
+  # The following are standard script_translator settings. The current Lua
+  # translator implements sentence generation itself and does not read these.
+  enable_sentence: false
+  enable_completion: false
+  # The Lua translator reads moji_ja/tag instead of translator/tag.
+  tag: moji_ja

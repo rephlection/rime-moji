@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi_kanji.schema.yaml.
+# Modifications: namespaced as moji_ja.aux.kanji and linked to the local table.
+# Internal auxiliary schema for hiragana-to-kanji conversion.
+# Its kana alphabet matches the Kagiroi hiragana alphabet used by the source table.
+schema:
+  schema_id: moji_ja.aux.kanji
+  name: moji internal kanji
+  version: "0.1.0"
+engine: {}
+speller:
+  alphabet: ょぁぃぅぇぉあいうえおかきくけこがぎぐげごさしすせそざじずぜぞたちつてとだぢづでどなにぬねのはひふへほばびぶべぼぱぴぷぺぽまみむめもやゆよらりるれろわゐ𛄟ゑをんゃっゕゖーゅ
+translator:
+  dictionary: moji_ja.aux.kanji
+  enable_completion: false
+  enable_user_dict: false
+  enable_sentence: false
+  tag: moji_ja

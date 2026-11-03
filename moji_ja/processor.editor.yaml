@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi.schema.yaml.
+# Modifications: retained Japanese editor bindings under the moji_ja namespace.
+# processor editor config
+editor:
+  bindings:
+    space: confirm
+    Return: commit_script_text
+    BackSpace: revert
+    Delete: delete
+    Escape: cancel

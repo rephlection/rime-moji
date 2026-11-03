@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: original rime-moji configuration; mounted-prefix architecture references rimeinn/rime-mkm@39bf741a70a5503e13ba1f84a6068c1b39c5f73d.
+# Modifications: defines the ja prefix, moji_ja tag, and Japanese translator mapping.
+# Affix-segmentor and Japanese Lua-translator settings for mounted input.
+moji_ja:
+  tag: moji_ja
+  # Keep this literal prefix in sync with recognizer.patterns.moji_ja.
+  prefix: ja
+  tips: "〔日〕"
+  # Read by lua/moji_ja/translator.lua via the moji_zh adapter.
+  translator:
+    sentence:
+      size: 2
+    input_mapping:
+      # Interpret a final n as ん during translation (separate from key handling).
+      - xform/^(.*)n$/$1ん$/

@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi.schema.yaml and key_bindings.yaml.
+# Modifications: retained Japanese mode bindings; shared paging is inherited from project defaults.
+# processor key_binder config
+key_binder:
+  __include: default:/key_binder
+  __patch:
+    - moji_ja/processor.key_binder:/paging
+    - moji_ja/processor.key_binder:/switches
+
+paging:
+  bindings/+:
+    - { when: paging, accept: minus, send: Page_Up }
+    - { when: has_menu, accept: equal, send: Page_Down }
+
+switches:
+  bindings/+:
+    - { when: composing, accept: "Control+u", set_option: hiragana }
+    - { when: composing, accept: "Control+i", set_option: katakana }
+    - { when: composing, accept: "Control+o", set_option: hw_katakana }

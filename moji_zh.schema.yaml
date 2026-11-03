@@ -1,0 +1,108 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: iDvel/rime-ice@99662ba01e3affa6a0f009174ca530b887bac3b6/rime_ice.schema.yaml; mounted-prefix architecture references rime-mkm@39bf741a70a5503e13ba1f84a6068c1b39c5f73d.
+# Modifications: reduced to pinyin plus the moji_ja prefix bridge and project switches.
+# Rime schema
+schema:
+  schema_id: moji_zh
+  name: moji 中文
+  version: "0.1.0"
+  author: rime-moji authors
+  description: |
+    基于雾凇拼音精简的中文全拼输入方案；中日模式通过 ja 前缀挂载 moji_ja。
+  dependencies:
+    - moji_ja
+    - moji_ja.aux.romaji
+    - moji_ja.aux.kanji
+    - moji_ja.aux.matrix
+
+switches:
+  - name: ascii_mode
+    states: [中文, ASCII]
+    abbrev: [中, 英]
+    reset: 1
+  - name: ascii_punct # built-in
+    states: [zh, en]
+    abbrev: [¥, $]
+  - name: full_shape # built-in
+    states: [半角, 全角]
+    abbrev: [半, 全]
+  # 可后续加入 zh_en；目前还没有迁入英文输入功能。
+  - options: [zh_ja, zh_only]
+    states: [中日, 中]
+    abbrev: [zhja, zh]
+    reset: 0 # default: zh_ja
+  # hiragana is the baseline; moji_ja/translator reads katakana and hw_katakana.
+  - options: [hiragana, katakana, hw_katakana]
+    states: [ひらがな, カタカナ, ｶﾀｶﾅ]
+    reset: 0
+  # - name: tranditionalization # (simplification is built-in) self-define, use built-in s2t.json
+  #   states: [简, 繁]
+  # - name: emoji # self-define, provide emoji opencc config
+  #   states: [ 💀, 😄 ]
+
+engine:
+  processors:
+    # key_binder must run first so paging keys are consumed before the Japanese
+    # romaji processor or recognizer can interpret them as input.
+    - key_binder
+    # rime-ice's select_character (以词定字) processor is not migrated.
+    # The Japanese adapter must precede ascii_composer to handle Japanese keys.
+    - lua_processor@*moji_zh/ja_speller
+    - ascii_composer
+    - recognizer
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - affix_segmentor@moji_ja
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - script_translator
+    # - table_translator@custom_phrase
+    - lua_translator@*moji_zh/ja_translator
+  filters:
+    # Deferred: simplifier@traditionalize is outside the current pinyin-only scope.
+    - uniquifier
+
+# processor configs
+recognizer:
+  __include: moji_zh/processor.recognizer:/recognizer
+key_binder:
+  __include: moji_zh/processor.key_binder:/key_binder
+speller:
+  __include: moji_zh/processor.speller:/speller
+punctuator:
+  __include: moji_zh/processor.punctuator:/punctuator
+editor: # read by express_editor
+  __include: moji_zh/processor.editor:/editor
+
+# segmentors:
+moji_ja:
+  __include: moji_zh/segmentor.japanese:/moji_ja
+
+# translators:
+translator: # "translator" is the default config namespace read by script_translator
+  __include: moji_zh/translator:/translator
+
+# Optional custom phrase example. Keep disabled until its table and db_name are configured.
+# custom_phrase:
+#   dictionary: ""
+#   user_dict: custom_phrase
+#   db_class: stabledb
+#   enable_completion: false
+#   enable_sentence: false
+#   initial_quality: 99 # larger quality gets higher priority
+
+# traditionalize:
+#   option_name: traditionalization  # 对应 switches 中的 name
+#   opencc_config: s2t.json          # s2t.json | s2hk.json | s2tw.json | s2twp.json （Rime 内置配置，在程序目录可找到）
+#   tips: none                       # 转换提示: all 都显示 | char 仅单字显示 | none 不显示。
+#   tags: [ abc, number ]  # 限制在对应 tag，不对其他如反查的内容做简繁转换

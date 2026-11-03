@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: iDvel/rime-ice@99662ba01e3affa6a0f009174ca530b887bac3b6/rime_ice.schema.yaml.
+# Modifications: keeps pinyin script_translator settings; excludes deferred filters/English paths.
+# Settings for Rime's built-in script_translator, not moji_ja's Lua Memory.
+# rime-ice's corrector.lua consumes spelling-hint comments; this schema does
+# not load that filter, so its correction-specific comment settings are omitted.
+translator:
+  dictionary: moji_zh
+  user_dict: moji_zh
+  enable_user_dict: true
+  # enable_sentence is a table_translator setting, not read by script_translator.
+  enable_completion: true
+  enable_word_completion: true
+  spelling_hints: 0 # Keep generated spelling comments disabled
+  # initial_quality: 1.2
+  preedit_format:
+    - xform/([jqxy])v/$1u/
+    - xform/([nl])ue/$1ve/

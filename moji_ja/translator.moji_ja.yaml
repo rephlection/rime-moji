@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi.schema.yaml.
+# Modifications: documents the moji_ja translator namespace and local Memory settings.
+# Lua translator options for the moji_ja schema.
+# Compared with Kagiroi, these settings are moved under the moji_ja namespace;
+# sentence size and the trailing-n input mapping are retained.
+moji_ja:
+  tag: moji_ja
+  translator:
+    sentence:
+      size: 2
+      # allow_table_word: false # allow_table_word was an old key survived a refactor
+    input_mapping:
+      # Treat a final n as ん during translation; this does not change kana_speller behavior.
+      - xform/^(.*)n$/$1ん$/

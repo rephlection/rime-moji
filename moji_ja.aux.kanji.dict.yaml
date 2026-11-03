@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi_kanji.schema.yaml and kagiroi_kanji.dict.yaml.
+# Modifications: project wrapper for the relocated kanji table; preserves source order.
+# Internal kana-to-kanji dictionary; preserve the imported table's original order.
+---
+name: moji_ja.aux.kanji
+version: "0.1.0"
+sort: original
+use_preset_vocabulary: false
+import_tables:
+  - dict/moji_ja/kanji
+...

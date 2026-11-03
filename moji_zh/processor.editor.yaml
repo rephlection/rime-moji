@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: iDvel/rime-ice@99662ba01e3affa6a0f009174ca530b887bac3b6/rime_ice.schema.yaml.
+# Modifications: keeps candidate deletion disabled and documents its userdb behavior.
+# processor editor config
+editor:
+  bindings:
+    # https://github.com/rime/librime/blob/master/src/rime/gear/editor.cc
+    space: confirm
+    Return: commit_raw_input  # raw
+    Control+Return: commit_script_text # raw -> preedit_format
+    BackSpace: revert
+    Control+BackSpace: back_syllable
+    Delete: delete
+    # If enabled, marks the selected eligible phrase deleted in this schema's
+    # writable user dictionary; it does not remove the source dictionary row.
+    # Keep disabled by default because this is a persistent blacklist action.
+    # Control+Delete: delete_candidate
+    Escape: cancel

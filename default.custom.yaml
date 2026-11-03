@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rime/home/prelude@082425ea0684bca36474415d4a0e8db9b016487e/default.yaml.
+# Modifications: added moji_zh/moji_ja registration, F4 options, custom component includes, and menu settings.
+# patch to default.yaml
+patch:
+  # config_version:
+  schema_list:
+    - schema: moji_zh
+    - schema: moji_ja
+  switcher:
+    caption: "Schema/Options"
+    hotkeys:
+      - F4
+      - Alt+grave
+      - Alt+asciitilde
+      - Control+grave
+      - Control+asciitilde
+      - Control+Shift+grave
+      - Control+Shift+asciitilde
+    save_options: # switches in schemas; reset for switch will be ignored; saved in user.yaml
+      - ascii_punct
+    fold_options: true
+    abbreviate_options: true
+    option_list_separator: ' / '
+  menu:
+    page_size: 5
+
+  # processors
+  ascii_composer:
+    __include: default.custom/processor/ascii_composer:/ascii_composer
+  key_binder:
+    __include: default.custom/processor/key_binder:/key_binder
+  punctuator:
+    __include: default.custom/processor/punctuator:/punctuator
+  recognizer:
+    __include: default.custom/processor/recognizer:/recognizer
+  selector:
+    __include: default.custom/processor/selector:/selector

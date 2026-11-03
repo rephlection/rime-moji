@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: iDvel/rime-ice@99662ba01e3affa6a0f009174ca530b887bac3b6/rime_ice.schema.yaml; default patterns from rime/home/prelude@082425ea0684bca36474415d4a0e8db9b016487e.
+# Modifications: inherits default patterns and adds the mounted Japanese tag.
+# Default recognizer patterns plus the Japanese mounted-input pattern.
+recognizer:
+  patterns:
+    __include: default:/recognizer/patterns
+    # Keep the literal `ja` here in sync with moji_ja/prefix in segmentor.japanese.yaml.
+    # Non-digit suffixes keep the mounted Japanese tag through composition edits;
+    # ASCII digits must fail this pattern so selector can use them for candidates.
+    moji_ja: '^(?:ja|\xE3\x81[\x81-\xBF]|\xE3\x82[\x80-\x9F]|\xE3\x83\xBC)[^0-9]*$'

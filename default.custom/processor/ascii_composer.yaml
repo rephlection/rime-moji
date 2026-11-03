@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rime/home/prelude@082425ea0684bca36474415d4a0e8db9b016487e/default.yaml.
+# Modifications: Shift_L and Shift_R commit raw codes; other default switch keys retained.
+# ascii_composer processor settings
+# encoding: utf-8
+
+ascii_composer:
+  good_old_caps_lock: true
+  switch_key:
+    # commit_code | commit_text | inline_ascii | clear | noop
+    Shift_L: commit_code # inline_ascii
+    Shift_R: commit_code # commit_text
+    Control_L: noop
+    Control_R: noop
+    Caps_Lock: clear
+    Eisu_toggle: clear

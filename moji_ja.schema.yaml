@@ -1,0 +1,80 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi.schema.yaml.
+# Modifications: namespaced as moji_ja; disabled unsupported modes and explicitly inherits the default recognizer.
+# Rime schema
+schema:
+  schema_id: moji_ja
+  name: moji 日本語
+  # icon: moji_ja.ico  # No original project icon is supplied; Kagiroi's icon is not reused.
+  version: "0.1.0"
+  author: rime-moji authors
+  description: "Romaji Japanese input based on Kagiroi. Requires librime-lua."
+  dependencies:
+    - moji_ja.aux.romaji
+    - moji_ja.aux.kanji
+    - moji_ja.aux.matrix
+
+switches:
+  - name: ascii_mode
+    states: [日本語, ASCII]
+    reset: 1
+  - options: [hiragana, katakana, hw_katakana]
+    states: [ひらがな, カタカナ, ｶﾀｶﾅ]
+    reset: 0
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - lua_processor@*moji_ja/kana_speller
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    # - table_translator@custom_phrase
+    - lua_translator@*moji_ja/translator
+  filters:
+    - uniquifier
+
+# processors:
+ascii_composer:
+  __include: moji_ja/processor.ascii_composer:/ascii_composer
+key_binder:
+  __include: moji_ja/processor.key_binder:/key_binder
+speller:
+  __include: moji_ja/processor.speller:/speller
+punctuator:
+  __include: moji_ja/processor.punctuator:/punctuator
+recognizer:
+  __include: default:/recognizer
+editor: # read by express_editor
+  __include: moji_ja/processor.editor:/editor
+
+# segmentors:
+abc_segmentor:
+  __include: moji_ja/segmentor.abc:/abc_segmentor
+
+# translators:
+translator:
+  __include: moji_ja/translator:/translator
+moji_ja:
+  __include: moji_ja/translator.moji_ja:/moji_ja
+
+# Deferred: enable the table translator only if project-owned manual phrases are added.
+# custom_phrase:
+#   dictionary: ""
+#   user_dict: moji_ja_custom_phrases
+#   db_class: stabledb
+#   enable_completion: false
+#   enable_sentence: false

@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi_romaji.schema.yaml and kagiroi_romaji.dict.yaml.
+# Modifications: project wrapper for the relocated public-domain romaji table.
+# Internal romaji-to-kana lookup dictionary used by the auxiliary romaji schema.
+---
+name: moji_ja.aux.romaji
+version: "0.1.0"
+sort: by_weight
+use_preset_vocabulary: false
+import_tables:
+  - dict/moji_ja/romaji
+...

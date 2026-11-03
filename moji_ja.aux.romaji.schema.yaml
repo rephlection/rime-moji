@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi_romaji.schema.yaml.
+# Modifications: namespaced as moji_ja.aux.romaji and limited to the retained romaji layout.
+# Internal auxiliary schema: romaji spellings are looked up as kana by kana_speller.
+# Base spellings follow Kunrei-shiki; the algebra also accepts common Hepburn forms.
+schema:
+  schema_id: moji_ja.aux.romaji
+  name: moji internal romaji
+  version: "0.1.0"
+engine: {}
+speller:
+  # Characters used by the romaji table and spelling algebra; n' is handled directly by kana_speller.
+  # The upstream layout also has ';' for gikun, which is disabled in this migration.
+  alphabet: abcdefghijklmnopqrstuvwxyz-
+  algebra:
+    # ti → chi; tya/tyu/tyo → cha/chu/cho
+    - derive/^t(?:(i)|y([aueo]))$/ch$1$2/
+    # tya/tyi/tyu/tye/tyo → cya/cyi/cyu/cye/cyo
+    - derive/^t(y[aiueo])$/c$1/
+    # zi/zya... → ji/jya...
+    - derive/^z(i|y[aiueo])$/j$1/
+    # hu → fu; hwa/hwi/hwe/hwo → fa/fi/fe/fo
+    - derive/^h(?:(u)|w([aioe]))$/f$1$2/
+    # si/sya... → shi/sha...
+    - derive/^s(?:(i)|y([aueo]))$/sh$1$2/
+    # jya/jyu/jyo → ja/ju/jo
+    - derive/^jy([aueo])$/j$1/
+    # la/lya/lka/ltsa... → xa/xya/xka/xtsa...
+    - derive/^l((?:ts|[ywkt])?[aiueo])/x$1/
+translator:
+  dictionary: moji_ja.aux.romaji
+  enable_completion: false
+  enable_user_dict: false
+  enable_sentence: true
+  tag: moji_ja

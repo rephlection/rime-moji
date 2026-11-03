@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi.dict.yaml.
+# Modifications: imports only the retained core tables under the moji_ja namespace.
+# Main Japanese conversion dictionary; imports the core Mozc-derived vocabulary.
+# Optional Kagiroi dictionary extensions are intentionally deferred (see README).
+---
+name: moji_ja
+version: "0.1.0"
+sort: by_weight
+use_preset_vocabulary: false
+import_tables:
+  - dict/moji_ja/mozc
+...

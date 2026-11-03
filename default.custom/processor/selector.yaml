@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rime/home/prelude@082425ea0684bca36474415d4a0e8db9b016487e/key_bindings.yaml.
+# Modifications: apply Tab/Shift+Tab candidate rotation across selector layouts.
+# selector processor settings
+# encoding: utf-8
+
+selector:
+  __patch:
+    bindings:
+      __include: default.custom/processor/selector:/rotate_candidate_with_tab
+    linear/bindings:
+      __include: default.custom/processor/selector:/rotate_candidate_with_tab
+    vertical/bindings:
+      __include: default.custom/processor/selector:/rotate_candidate_with_tab
+    vertical/linear/bindings:
+      __include: default.custom/processor/selector:/rotate_candidate_with_tab
+
+rotate_candidate_with_tab:
+  ISO_Left_Tab: previous_candidate
+  Shift+Tab: previous_candidate
+  Tab: next_candidate

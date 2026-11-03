@@ -1,0 +1,21 @@
+# Python test artifacts
+__pycache__/
+*.py[cod]
+
+# Rime build and runtime file
+/build/
+*.userdb/
+*.userdb.*
+/user.yaml
+
+# Rime frontend / distribution specific
+/installation.yaml
+
+# Rime sync folder
+/sync/
+
+# Temporary upstream reference snapshots (not project content)
+/refs/
+
+# AI
+/AGENTS.md

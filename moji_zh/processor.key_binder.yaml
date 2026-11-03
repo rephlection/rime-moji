@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: iDvel/rime-ice@99662ba01e3affa6a0f009174ca530b887bac3b6/rime_ice.schema.yaml.
+# Modifications: inherits project-global paging keys; no Japanese-specific duplicate patch.
+# Extend the default key bindings with the Japanese mode's minus/equal paging keys.
+key_binder:
+  __include: default:/key_binder

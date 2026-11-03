@@ -1,0 +1,92 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: iDvel/rime-ice@99662ba01e3affa6a0f009174ca530b887bac3b6/rime_ice.schema.yaml.
+# Modifications: retains pinyin algebra and corrects multi-letter initials to explicit alternatives.
+# processor speller config
+speller:
+  # Pinyin-only alphabet; rime-ice's uppercase and backtick triggers are omitted.
+  alphabet: abcdefghijklmnopqrstuvwxyz
+  initials: abcdefghijklmnopqrstuvwxyz
+  delimiter: " '" # Space separates syllables; apostrophe is an optional explicit delimiter.
+  algebra:
+    # Accept selected alternative spellings while keeping the original codes.
+    # Explicit abbreviations are enabled below; no fuzzy sound substitutions.
+    # Typo correction is limited to the listed derive rules, not a general key swap.
+    #
+    # abbrev
+    - erase/^hm$/
+    - erase/^m$/
+    - erase/^n$/
+    - erase/^ng$/
+    - abbrev/^([a-z]).+$/$1/
+    - abbrev/^([zcs]h).+$/$1/
+
+    # uv, ue/ve
+    - derive/^([nl])ve$/$1ue/
+    - derive/^([jqxy])u/$1v/
+    - derive/^([nl])ue$/$1ve/
+    - derive/^([jqxy])v/$1u/
+
+    # Auto-correction derives below are explicitly enumerated.
+    # Intentionally omit rime-ice's two zh/ch/sh transposition derives: upstream
+    # marks them as side-effect-prone for full-pinyin/abbreviation mixtures.
+    # ai
+    - derive/^([wghk])ai$/$1ia/  # wia → wai
+    # ei
+    - derive/([wfghkz])ei$/$1ie/  # wie → wei
+    # ie
+    - derive/([jqx])ie$/$1ei/  # jei → jie
+    # ao
+    - derive/([rtypsdghklzcbnm])ao$/$1oa/
+    # ou
+    - derive/([ypfm])ou$/$1uo/
+    # uo（无）
+    # ang
+    - derive/([wrtypsdfghklzcbnm])ang$/$1nag/
+    - derive/([wrtypsdfghklzcbnm])ang$/$1agn/
+    # eng
+    - derive/([wrtpsdfghklzcbnm])eng$/$1neg/
+    - derive/([wrtpsdfghklzcbnm])eng$/$1egn/
+    # ing
+    - derive/([qtypdjlxbnm])ing$/$1nig/
+    - derive/([qtypdjlxbnm])ing$/$1ign/
+    # ong
+    - derive/([rtysdghklzcn])ong$/$1nog/
+    - derive/([rtysdghklzcn])ong$/$1ogn/
+    # iao
+    - derive/([qtpdjlxbnm])iao$/$1ioa/
+    - derive/([qtpdjlxbnm])iao$/$1oia/
+    # ui
+    - derive/([rtsghkzc])ui$/$1iu/
+    # iu
+    - derive/([qjlxnm])iu$/$1ui/
+    # iang
+    - derive/([qjlxn])iang$/$1aing/
+    - derive/([qjlxn])iang$/$1inag/
+    # rime-ice used character classes such as [g|k|h|zh|sh], which cannot express
+    # multi-letter alternatives. Use groups here to match the apparent intent.
+    # ua
+    - derive/(zh|sh|[gkh])ua$/$1au/
+    # uai
+    - derive/(zh|ch|sh|[ghk])uai$/$1aui/
+    # - derive/(zh|ch|sh|[ghk])uai$/$1uia/ # 和「会啊、追啊」等常用词有冲突
+    # uan
+    - derive/([qrtysdghjklzxcn])uan$/$1aun/
+    # - derive/([qrtysdghjklzxcn])uan$/$1una/ # 和「去哪、露娜」等常用词有冲突
+    # ue
+    - derive/([nlyjqx])ue$/$1eu/
+    # uang
+    - derive/(zh|ch|sh|[ghk])uang$/$1aung/
+    - derive/(zh|ch|sh|[ghk])uang$/$1uagn/
+    - derive/(zh|ch|sh|[ghk])uang$/$1unag/
+    - derive/(zh|ch|sh|[ghk])uang$/$1augn/
+    # iong
+    - derive/([jqx])iong$/$1inog/
+    - derive/([jqx])iong$/$1oing/
+    - derive/([jqx])iong$/$1iogn/
+    - derive/([jqx])iong$/$1oign/
+    # 其他
+    - derive/([rtsdghkzc])o(u|ng)$/$1o/ # do → dou|dong
+    - derive/(.+)ong$/$1on/ # lon → long
+    - derive/([tl])eng$/$1en/ # ten → teng
+    - derive/([qwrtypsdfghjklzxcbnm])([aeio])ng$/$1ng/ # lng → lang、leng、ling、long

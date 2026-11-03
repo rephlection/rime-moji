@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi_matrix.schema.yaml and kagiroi_matrix.dict.yaml.
+# Modifications: project wrapper for the relocated POS connection table.
+# Internal dictionary wrapper for the Mozc-derived part-of-speech connection data.
+---
+name: moji_ja.aux.matrix
+version: "0.1.0"
+sort: by_weight
+use_preset_vocabulary: false
+import_tables:
+  - dict/moji_ja/matrix
+...

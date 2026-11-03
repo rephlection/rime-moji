@@ -1,0 +1,5 @@
+{
+  "name": "Hiragana to Katakana",
+  "segmentation": {"type": "mmseg", "dict": {"type": "text", "file": "h2k.txt"}},
+  "conversion_chain": [{"dict": {"type": "text", "file": "h2k.txt"}}]
+}

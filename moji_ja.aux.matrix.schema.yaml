@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rimeinn/rime-kagiroi@808a195415e6d7bd3a41b1747039d8459bfde207/kagiroi_matrix.schema.yaml.
+# Modifications: namespaced as moji_ja.aux.matrix and linked to the local matrix table.
+# Internal auxiliary schema used to load the Mozc-derived POS connection data.
+schema:
+  schema_id: moji_ja.aux.matrix
+  name: moji internal matrix
+  version: "0.1.0"
+engine: {}
+translator:
+  dictionary: moji_ja.aux.matrix

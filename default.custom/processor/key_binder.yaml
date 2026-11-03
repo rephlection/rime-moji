@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: LGPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: rime/home/prelude@082425ea0684bca36474415d4a0e8db9b016487e/key_bindings.yaml.
+# Modifications: retained project paging brackets/minus/equal and F4 schema bindings.
+# key_binder processor settings
+# encoding: utf-8
+
+key_binder:
+  bindings:
+    __patch:
+      - default.custom/processor/key_binder:/general
+
+general:
+  __append:
+    # - { when: composing, accept: Shift+Tab, send: Shift+Left }  # 光标 下一个拼音
+    # - { when: composing, accept: Tab, send: Shift+Right }       # 光标 上一个拼音
+    # - { when: composing, accept: Alt+Left, send: Shift+Left }
+    # - { when: composing, accept: Alt+Right, send: Shift+Right }
+    - { when: paging, accept: minus, send: Page_Up }              # 翻页 向前
+    - { when: has_menu, accept: equal, send: Page_Down }          # 翻页 向后
+    - { when: paging, accept: bracketleft, send: Page_Up }
+    - { when: has_menu, accept: bracketright, send: Page_Down }
+    - { when: always, accept: F4, select: .next }
+    - { when: ascii_mode, accept: F4, select: .next }

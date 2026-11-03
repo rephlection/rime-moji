@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: iDvel/rime-ice@99662ba01e3affa6a0f009174ca530b887bac3b6/rime_ice.schema.yaml; punctuation defaults from rime/home/prelude@082425ea0684bca36474415d4a0e8db9b016487e.
+# Modifications: retains selected project punctuation overrides, including half-shape backslash.
+# processor punctuator config
+punctuator:
+  # Inherit the host's generic punctuation mappings and any supported fields.
+  __include: default:/punctuator
+  __patch:
+    # Match rime-ice's half-shape behavior: backslash commits 、 directly,
+    # instead of offering the default prelude's 、 / \\ / ＼ candidate list.
+    'half_shape/\': '、'
+# rime-ice's v-prefixed symbols mapping is intentionally deferred with symbols.

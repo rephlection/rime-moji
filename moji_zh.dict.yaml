@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Source: iDvel/rime-ice@99662ba01e3affa6a0f009174ca530b887bac3b6:rime_ice.dict.yaml.
+# Modifications: imports only the 8105 character table and base dictionary.
+# Rime dictionary
+# encoding: utf-8
+# Adapted for moji: imports only the 8105-character table and base dictionary.
+# English and other upstream dictionary extensions are deferred.
+---
+name: moji_zh
+version: "0.1.0"
+sort: by_weight
+use_preset_vocabulary: false
+import_tables:
+  - dict/moji_zh/8105
+  - dict/moji_zh/base
+...

@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 rime-moji authors
+# Modifications: empty project placeholder; custom_phrase remains disabled.
+# Rime table
+# encoding: utf-8
+# Custom phrases for moji_zh; currently empty and not enabled in the schema.
